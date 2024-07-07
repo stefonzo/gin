@@ -6,6 +6,7 @@
 #include <cmath>
 #include <cstdint>
 #include <vector>
+#include <random>
 #include "particle.hpp"
 
 class texture {

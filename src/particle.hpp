@@ -14,8 +14,8 @@ class particle {
         double life_span;
         Vec2D position, velocity, acceleration;
     public:
-        particle(double x, double y) {}
-        virtual ~particle() {}
+        particle(double x, double y);
+        virtual ~particle();
         virtual void update(double dt);
         virtual void render(SDL_Renderer* r);
 };
