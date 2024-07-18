@@ -64,16 +64,19 @@ class gin {
         SDL_Window* g_window = NULL;
         SDL_Renderer* g_renderer = NULL;
         unsigned g_window_height, g_window_width;
+        int mouse_x, mouse_y;
         std::string g_window_name;
         std::vector<texture> m_textures;
         void init(void);
         void cleanup(void);
+        void mouse_event(SDL_Event *e); // this function will add particles to the demo 
 
-        // testing textures, ttf, animations
+        // testing textures, ttf, animations, particles
         texture sprite_sheet;
         ttf pixel_font;
         animation stick_figure = animation(4, 64, 205, 4, 1);
-
+        ParticleSystem app_particles = ParticleSystem(1000);
+        
         // clip rectangles
         SDL_Rect tile_sprite = {0, 0, 100, 100}; 
     public:

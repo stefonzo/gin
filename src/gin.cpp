@@ -71,6 +71,17 @@ gin::~gin() {
     cleanup();
 }
 
+void gin::mouse_event(SDL_Event *e) {
+    // mouse event happened
+    if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP ) {
+        if (e->type == SDL_MOUSEBUTTONDOWN) {
+            SDL_GetMouseState(&mouse_x, &mouse_y);
+            app_particles.add_particle(mouse_x, mouse_y);
+            printf("x: %d y: %d\n", mouse_x, mouse_y);
+        }
+    }
+}
+
 void gin::loop(void) {
     bool quit = false;
     SDL_Event e;
@@ -78,8 +89,9 @@ void gin::loop(void) {
     while (!quit) {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
-                quit = true;
+                quit = true; // lets the user quit the program
             }
+            mouse_event(&e); // handles mouse input for the demo
         }
 
         // clear screen
